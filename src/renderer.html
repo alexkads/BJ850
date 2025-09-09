@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BJ850 Hercules Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🏭 BJ850 Hercules Clone</h1>
+            <div class="connection-status">
+                <span id="status-indicator" class="status-disconnected">●</span>
+                <span id="status-text">Desconectado</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Painel de Conexão -->
+            <div class="panel connection-panel">
+                <h2>📡 Conexão Ethernet</h2>
+                <div class="connection-form">
+                    <div class="input-group">
+                        <label for="host">Endereço IP:</label>
+                        <input type="text" id="host" placeholder="192.168.1.100" value="192.168.1.100">
+                    </div>
+                    <div class="input-group">
+                        <label for="port">Porta:</label>
+                        <input type="number" id="port" placeholder="4001" value="4001">
+                    </div>
+                    <div class="button-group">
+                        <button id="connect-btn" class="btn btn-primary">Conectar</button>
+                        <button id="disconnect-btn" class="btn btn-secondary" disabled>Desconectar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Painel de Comandos Rápidos -->
+            <div class="panel commands-panel">
+                <h2>⚡ Comandos Rápidos BJ-850</h2>
+                <div class="quick-commands">
+                    <button class="cmd-btn" data-command="get-weight">📏 Obter Peso</button>
+                    <button class="cmd-btn" data-command="zero">🔄 Zerar</button>
+                    <button class="cmd-btn" data-command="tare">⚖️ Tarar</button>
+                    <button class="cmd-btn" data-command="get-status">📊 Status</button>
+                    <button class="cmd-btn" data-command="get-info">ℹ️ Info</button>
+                    <button class="cmd-btn" data-command="reset">🔄 Reset</button>
+                </div>
+            </div>
+
+            <!-- Painel de Envio Manual -->
+            <div class="panel send-panel">
+                <h2>📤 Envio Manual</h2>
+                <div class="send-form">
+                    <div class="input-group">
+                        <label for="send-data">Dados para enviar:</label>
+                        <div class="send-input-group">
+                            <input type="text" id="send-data" placeholder="Digite comando ou dados...">
+                            <select id="send-format">
+                                <option value="text">Texto</option>
+                                <option value="hex">Hexadecimal</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="send-options">
+                        <label>
+                            <input type="checkbox" id="add-crlf" checked>
+                            Adicionar CR+LF (\\r\\n)
+                        </label>
+                    </div>
+                    <button id="send-btn" class="btn btn-primary" disabled>Enviar</button>
+                </div>
+            </div>
+
+            <!-- Monitor de Dados -->
+            <div class="panel monitor-panel">
+                <h2>📺 Monitor de Dados</h2>
+                <div class="monitor-controls">
+                    <button id="clear-log" class="btn btn-secondary">Limpar Log</button>
+                    <button id="auto-scroll" class="btn btn-toggle active">Auto Scroll</button>
+                    <label>
+                        <input type="checkbox" id="show-timestamp" checked>
+                        Mostrar Timestamp
+                    </label>
+                    <label>
+                        <input type="checkbox" id="show-hex">
+                        Mostrar Hex
+                    </label>
+                </div>
+                <div class="monitor-area">
+                    <div id="data-log" class="data-log"></div>
+                </div>
+            </div>
+
+            <!-- Peso Atual -->
+            <div class="panel weight-panel">
+                <h2>⚖️ Peso Atual</h2>
+                <div class="weight-display">
+                    <div class="weight-value" id="current-weight">---</div>
+                    <div class="weight-unit">kg</div>
+                </div>
+                <div class="weight-info">
+                    <span id="weight-status">Aguardando dados...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span id="stats-sent">Enviados: 0</span>
+            <span id="stats-received">Recebidos: 0</span>
+            <span id="last-activity">Última atividade: ---</span>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
